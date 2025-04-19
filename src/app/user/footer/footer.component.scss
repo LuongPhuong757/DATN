@@ -1,0 +1,114 @@
+@import  '../../../styles.scss';
+
+#footer {
+  background-color: #000000;
+  color: #f1f1f1;
+}
+.footer-links-title,
+.footer-fanpage-title,
+.footer-map-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+#footer .footer-info img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+.footer-divider {
+  display: block;
+  width: 100%;
+  max-width: 30px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 10.5px 0 16px;
+}
+.footer-info > p {
+  padding-bottom: 20px;
+}
+.footer-info > p i {
+  padding: 0 5px;
+}
+.footer-info > p a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-info p a {
+  opacity: 0.85;
+}
+.footer-info a:hover {
+  opacity: 1;
+}
+.footer-social {
+  padding-bottom: 20px;
+}
+.footer-social a {
+  color: inherit;
+  text-decoration: none;
+  margin: 10px 3px;
+}
+.footer-social a i {
+  border: 1.5px solid;
+  border-radius: 50%;
+  padding: 6px;
+}
+.footer-social .ti-facebook:hover,
+.footer-social .ti-twitter-alt:hover {
+  background-color: #3a589d;
+  border: 1.5px solid #3a589d;
+  transition: all 0.2s;
+}
+.footer-social .ti-instagram:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  border: 1.5px solid #f09433;
+  transition: all 0.2s;
+}
+.footer-social .ti-youtube:hover {
+  background-color: #c33223;
+  border: 1.5px solid #c33223;
+  transition: all 0.2s;
+}
+.footer-links-nav li {
+  list-style: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+.footer-links-nav li:last-child {
+  border-bottom: none;
+}
+.footer-links-nav li a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  padding: 7px 0;
+  opacity: 0.85;
+}
+.footer-links-nav li a:hover {
+  opacity: 1;
+}

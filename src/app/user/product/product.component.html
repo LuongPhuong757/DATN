@@ -1,0 +1,355 @@
+<!--<button (click)="toasterService.success('add success')">toastr</button>-->
+<div class="main-product">
+  <div class="row col js-new-product">
+    <div class="prouct-portfolio">
+      <h3>SẢN PHẨM MỚI</h3>
+      <div class="footer-divider prouct-divider"></div>
+      <ul class="navbar">
+        <li *ngFor="let product of listProduct['1']">
+          <a (click)="getProductDetail(product.id)" class="cursor-pointer">
+            <img src="{{'http://localhost:3000/'+product.listImage[0]}}" />
+            <div class="product-info">
+              <div class="product-name">
+                {{ product.name }}
+              </div>
+              <del *ngIf="product.discount" >
+                {{ product.price }} ₫
+              </del>
+              <div class="product-price">
+                {{  realMoneyPrice(product.price, product.discount ?? null)   }} ₫
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <h3 class="pt-30">SẢN PHẨM NỔI BẬT</h3>
+      <div class="footer-divider prouct-divider"></div>
+      <ul class="navbar">
+        <li *ngFor="let product of listProduct['1']">
+          <a (click)="getProductDetail(product.id)"  class="cursor-pointer">
+            <img src="{{'http://localhost:3000/'+product.listImage[0]}}" />
+            <div class="product-info">
+              <div class="product-name">
+                {{ product.name }}
+              </div>
+              <del *ngIf="product.discount" >
+                {{ product.price }} ₫
+              </del>
+              <div  class="product-price">
+                {{ realMoneyPrice(product.price, product.discount ?? null)  }} ₫
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="products">
+      <div class="product-header">
+        <div class="product-breadcrumb">
+          <a href="../index.html">TRANG CHỦ / </a>
+          <h4>SẢN PHẨM</h4>
+        </div>
+        <!--        <div class="nav-product">-->
+        <!--          <a href="#" class="js-product"><i class="ti-menu"></i>LỌC</a>-->
+        <!--        </div>-->
+        <!--        <div class="product-sort">-->
+        <div class="main-modal-search flex">
+          <div class="modal-search-input">
+            <input #myInput type="text" id="keyword" class="search_input" (input)="onSearchProduct($event)" placeholder="Tìm kiếm ..."/>
+<!--            <i *ngIf="!!myInput" class="ti-close" (click)="clearValue()" style="    position: relative;-->
+<!--    top: -34px;-->
+<!--    left: 220px;"></i>-->
+          </div>
+
+          <div class="modal-search-button">
+            <button id="search"><i class="ti-search"></i></button>
+          </div>
+
+        </div>
+      </div>
+      <div class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Combo</a>
+        </h2>
+<!--        <p>View all</p>-->
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['1']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div  class="product-price">
+                  <del *ngIf="product.discount">
+                    {{ product.price }}₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount ?? null)  }}₫
+                </div>
+
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd1" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Phòng khách</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['2']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del *ngIf="product.discount" >
+                    {{ product.price }} ₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount ?? null)  }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd2" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Phòng ngủ</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['3']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del  *ngIf="product.discount" >
+                    {{ product.price }} ₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount ?? null)   }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd3" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Tủ bếp</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['4']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del *ngIf="product.discount">
+                    {{ product.price }} ₫
+                  </del>
+                  {{  realMoneyPrice(product.price, product.discount ?? null) }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd4" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Văn phòng</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['5']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del *ngIf="product.discount">
+                    {{ product.price }} ₫
+                  </del>
+                  {{  realMoneyPrice(product.price, product.discount ?? null)  }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd5" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Đồ trang trí</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['6']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div  class="product-price">
+                  <del *ngIf="product.discount">
+                    {{ product.price }} ₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount ?? null)  }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd6" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Bàn</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['7']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del *ngIf="product.discount" >
+                    {{ product.price }} ₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount ?? null) }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pd7" class="product-list">
+        <h2>
+          <a href><i class="ti-menu-alt"></i>Ghế</a>
+        </h2>
+
+        <div class="main-product-list">
+          <div class="pr-col">
+            <div
+              class="product pr-col-4"
+              *ngFor="let product of listProduct['8']"
+            >
+              <img class="cursor-pointer" (click)="getProductDetail(product.id)" src="{{'http://localhost:3000/'+product.listImage[0]}}"/>
+              <div class="product-text-box">
+                <div class="product-name">
+                  {{ product.name }}
+                </div>
+                <div class="product-price">
+                  <del *ngIf="product.discount">
+                    {{ product.price }} ₫
+                  </del>
+                  {{ realMoneyPrice(product.price, product.discount   ?? null) }} ₫
+                </div>
+                <button class="btn" (click)="addProductToCart(product.id)">
+                  <a>Thêm vào giỏ hàng</a>
+                </button>
+              </div>
+              <div *ngIf="product.discount" class="badge-container">
+                <div class="badge-inner">
+                  -{{ product.discount }} %
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

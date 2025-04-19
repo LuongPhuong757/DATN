@@ -1,0 +1,97 @@
+@import  '../../../styles.scss';
+
+.main-news {
+  display: flex;
+  padding: 30px 0;
+}
+.news-col-2 {
+  flex: 2;
+  padding: 0 10px 20px;
+  animation: titleFadeIn ease 1.5s;
+}
+.news-col-1 {
+  flex: 1;
+  padding: 0 10px 20px;
+}
+.news-col-2 .sub-news {
+  display: flex;
+  align-items: center;
+  padding: 0 10px 20px;
+}
+.news-col-2 .sub-news img {
+  width: 35%;
+  /* padding-top: 56%; */
+}
+.news-col-2 .sub-news .news-text {
+  padding: 0.7em 1.5em 1.4em;
+}
+.news-btn {
+  max-width: 100%;
+  min-height: 2.4em;
+  display: inline-block;
+  background-color: black;
+  border-color: rgba(0,0,0,0.05);
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0 1.1em;
+  margin-top: 1em;
+  transition: transform .3s, border .3s, background .3s, box-shadow .3s, opacity .3s, color .3s;
+  opacity: 1;
+}
+.news-btn a {
+  font-size: .85em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 2.4em;
+  text-decoration: none;
+}
+.news-btn:hover {
+  opacity: 0.75;
+}
+.news-update {
+  animation: titleFadeIn ease 1.5s;
+}
+.news-col-1 .main-modal-search {
+  width: 100%;
+  display: flex;
+  margin-bottom: 24px;
+}
+.news-col-1 .main-modal-search .modal-search-input input {
+  font-size: .9em;
+}
+.news-col-1 .main-modal-search .modal-search-button {
+  display: inline-block;
+}
+.news-col-1 .main-modal-search .modal-search-button button {
+  min-height: 2.37em;
+}
+.news-col-1 .main-modal-search .modal-search-button button i {
+  display: inline-block;
+  font-size: large;
+  left: 13px;
+  top: 11px;
+}
+.news-col-1 .news-divider {
+  height: 3px;
+  margin: 0.66em 0 1em;
+}
+.list-news-update {
+  padding: 8px 0;
+  border-bottom: 1.1px solid rgba(0,0,0,0.3);
+  margin-bottom: 28px
+}
+.list-news-update img {
+  width: 100%;
+}
+.list-news-text {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.list-news-update:hover {
+  opacity: 0.7;
+  transition: all 0.3s;
+}

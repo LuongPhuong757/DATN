@@ -1,0 +1,214 @@
+@import  '../product.component';
+
+h1 {
+  font-size: 2em;
+  font-weight: 700;
+}
+.main-product-details {
+  display: flex;
+  padding: 30px 0;
+}
+.nav-img {
+  flex: 1;
+  padding: 0 10px 20px;
+  cursor: grab;
+  margin: 0 -2px;
+}
+.nav-img img {
+  width: 103%;
+  margin-left: 1px;
+  padding: 0 0 15px;
+}
+.nav-img img:last-child {
+  margin-top: -6px;
+}
+.main-img {
+  height: 380px;
+  flex: 5.8;
+  margin: 0 10px 20px;
+  position: relative;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-img .badge-container {
+  width: 58px;
+  height: 58px;
+  font-size: 1.3em;
+  line-height: 50px;
+  left: -8px;
+}
+.product-details-info {
+  flex: 5;
+  padding: 0 10px 20px;
+}
+.product-breadcrumb h4 {
+  margin-left: 5px;
+}
+.product-details-info h1 {
+  margin-bottom: 13.6px;
+}
+.product-details-info .product-short-description {
+  margin: 20.8px 0;
+}
+.product-contact a {
+  text-decoration: none;
+  color: black;
+}
+.product-contact a:hover {
+  opacity: 0.7;
+}
+.product-contact p:last-child {
+  font-size: 0.8em;
+  display: block;
+  border-top: 1px dotted #ddd;
+  padding: 5px 0;
+}
+
+.product-details-text {
+  padding: 0 10px 36px;
+}
+.product-tab {
+  display: flex;
+}
+.product-tab li {
+  display: inline-block;
+  list-style: none;
+  margin: 0 0.1em;
+  margin-bottom: 6px;
+  margin-left: 0 !important;
+  transition: background-color .3s;
+}
+.product-tab li a{
+  font-size: .8em;
+  color: rgba(17,17,17,0.85);
+  background-color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-top-color: #000000;
+  border-top: 2px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  transition: all .2s;
+}
+.tab-panels {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+.tab-panels:last-child {
+  display: none;
+}
+.tab-panels:last-child h3 {
+  margin-bottom: 0.5em;
+}
+.tab-panels:last-child > p {
+  margin-bottom: 1.3em;
+}
+.tab-panels:last-child .review-form {
+  border: 2px solid #000000;
+  padding: 15px 30px 30px;
+  margin: 30px 0;
+}
+.tab-panels:last-child .review-inner {
+
+}
+.tab-panels:last-child .review-form h3 {
+  margin-bottom: 0.5em;
+
+}
+.tab-panels:last-child .review-form label {
+  color: #222;
+  font-size: .9em;
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}
+.comment-form-rating .star-rating {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+.comment-form-rating .star-rating .star {
+  padding: 0 0.2em;
+  border-right: 1.5px solid #ececec;
+  color: #d26e4b;
+}
+.comment-form-rating .star-rating .star:last-child {
+  border: none;
+}
+.comment-form-comment {
+  margin-bottom: 1em;
+}
+.comment-form-comment textarea {
+  width: 100%;
+  min-height: 120px;
+  font-size: .97em;
+  background-color: #fff;
+  color: #333;
+  padding-top: 0.7em;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+}
+.comment-form-author {
+  display: flex;
+}
+.comment-form-author .author {
+  flex: 1;
+  padding-right: 15px;
+  margin-bottom: 0.5em;
+}
+.comment-form-author .email {
+  flex: 1;
+  padding-left: 15px;
+  margin-bottom: 0.5em;
+}
+.comment-form-author input {
+  width: 100%;
+  height: 2.507em;
+  font-size: .97em;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 0 0.75em;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+  margin-bottom: 1em;
+}
+.comment-form-comment textarea:focus,
+.comment-form-author input:focus {
+  box-shadow: 0 0 5px #ccc;
+  opacity: 1 !important;
+  outline: 0;
+}
+.submit {
+  display: inline-block;
+  min-height: 2.5em;
+  font-size: .97em;
+  color: #fff;
+  background-color: #000000;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  cursor: pointer;
+  font-weight: bolder;
+  line-height: 2.4em;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 0 1.2em;
+  margin-bottom: 1em;
+}
+.submit:hover {
+  opacity: 0.8;
+}
+
+.similar-product {
+  padding: 0 10px 20px;
+}
+.similar-product h3 {
+  border-top: 1px solid #ececec;
+  padding: 15px 0;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}

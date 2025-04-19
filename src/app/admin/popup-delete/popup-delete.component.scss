@@ -1,0 +1,40 @@
+
+@import "../admin.component";
+.header {
+  border-bottom: 1px solid #e5e7eb;;
+}
+::ng-deep .custom-dialog-title {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+::ng-deep .confirm-button {
+  background-color: #008000;
+  color: #ffffff;
+}
+
+::ng-deep .cancel-button {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.delete-popup {
+  background-color: #ffffff;
+}
+/* Đổi màu cho tiêu đề */
+.mat-dialog-title {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+/* Đổi màu cho nút Xác nhận */
+.mat-dialog-actions button.mat-button.confirm-button {
+  background-color: #008000;
+  color: #ffffff;
+}
+
+/* Đổi màu cho nút Hủy bỏ */
+.mat-dialog-actions button.mat-button.cancel-button {
+  background-color: #ff0000;
+  color: #ffffff;
+}

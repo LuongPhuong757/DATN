@@ -1,0 +1,174 @@
+
+<main class="app-content">
+  <div class="app-title" style="margin-top: 40px;">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active">
+        <a href="#"><b>Tổng quan</b></a>
+      </li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <div class="row">
+            <!--Left-->
+            <div class="col-md-12 col-lg-6">
+              <div class="row">
+                <!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="widget-small primary coloured-icon">
+                    <i class="icon bx bxs-user-account fa-3x"></i>
+                    <div class="info">
+                      <h4>Tổng khách hàng</h4>
+                      <p><b>{{totalUser}} khách hàng</b></p>
+                      <p class="info-tong">Tổng số khách hàng được quản lý.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="widget-small info coloured-icon">
+                    <i class="icon bx bxs-data fa-3x"></i>
+                    <div class="info">
+                      <h4>Tổng sản phẩm</h4>
+                      <p><b>{{totalProduct}} sản phẩm</b></p>
+                      <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="widget-small warning coloured-icon">
+                    <i class="icon bx bxs-shopping-bags fa-3x"></i>
+                    <div class="info">
+                      <h4>Tổng đơn hàng</h4>
+                      <p><b>{{totalOrder}} đơn hàng</b></p>
+                      <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="widget-small danger coloured-icon">
+                    <i class="icon bx bxs-error-alt fa-3x"></i>
+                    <div class="info">
+                      <h4>Sắp hết hàng</h4>
+                      <p><b>{{productEntity}} sản phẩm</b></p>
+                      <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- col-12 -->
+                <div class="col-md-12">
+                  <div class="tile">
+                    <h3 class="tile-title">Tình trạng đơn hàng</h3>
+                    <div>
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th>ID đơn hàng</th>
+                          <th>Tên khách hàng</th>
+                          <th>Tổng tiền</th>
+                          <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of listOrder">
+                          <td>{{order.id}}</td>
+                          <td>{{order.user.userName}}</td>
+                          <td>{{order.totalMoney}} đ</td>
+                          <td><span class="badge bg-success">Đã đặt hàng</span></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- / div trống-->
+                  </div>
+                </div>
+                <!-- / col-12 -->
+                <!-- col-12 -->
+                <div class="col-md-12">
+                  <div class="tile">
+                    <h3 class="tile-title">Khách hàng mới</h3>
+                    <div>
+                      <table class="table table-hover">
+                        <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Tên khách hàng</th>
+                          <th>Email</th>
+                          <th>Số điện thoại</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let user of listUser">
+                          <td>{{user.id}}</td>
+                          <td>{{user.userName}}</td>
+                          <td>{{user.email}}</td>
+                          <td><span class="tag tag-success">{{user.phoneNumber}}</span></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- / col-12 -->
+              </div>
+            </div>
+            <!--END left-->
+            <!--Right-->
+            <div class="col-md-12 col-lg-6">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="tile">
+                    <h3 class="tile-title">Dữ liệu 6 tháng đầu vào</h3>
+                    <canvas
+                      baseChart
+                      [datasets]="radarChartData"
+                      [options]="radarChartOptions"
+                      [labels]="radarChartLabels"
+                    >
+                    </canvas>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="tile">
+                    <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                    </div> -->
+                    <canvas baseChart
+                            [type]="'line'"
+                            [datasets]="lineChartData"
+                            [labels]="lineChartLabels"
+                            [options]="lineChartOptions"
+                            [legend]="lineChartLegend"
+                            [plugins]="lineChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--END right-->
+          </div>
+
+          <div class="text-center" style="font-size: 13px">
+            <p>
+              <b
+              >Copyright
+                <script type="text/javascript">
+                  document.write(new Date().getFullYear());
+                </script>
+                website quản lý bán hàng | Nội thất GoKi
+              </b>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

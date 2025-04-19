@@ -1,0 +1,213 @@
+/*
+@import  '../../styles.scss';
+
+.modal,
+.modal-search {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+.modal.open,
+.modal-search.open {
+  display: flex;
+}
+.modal .modal-container,
+.modal-search .main-modal-search {
+  display: flex;
+  max-width: 875px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 5px;
+  box-shadow: 3px 3px 20px 0 rgb(0 0 0 / 35%);
+  margin: auto;
+  //animation: modalFadeIn ease 0.7s; !* animation: <tên keyframes> <kiểu animation> <thời gian chạy>; *!
+}
+.modal .main-modal {
+  flex: 1;
+  padding: 0 30px 30px;
+}
+.modal .main-modal:first-child {
+  border-right: 1px solid #ececec;
+}
+.modal .main-modal h3 {
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.modal .sub-modal {
+  margin-bottom: 8px;
+}
+.modal .main-modal label {
+  display: block;
+  color: #222;
+  font-size: 14.4px;
+  font-weight: bold;
+  margin-bottom: 5.76px;
+}
+#il {
+  display: flex;
+}
+.sub-modal #checkbox input {
+  margin: 0 4px 0 10px;
+}
+.sub-modal #checkbox label {
+  display: inline-block;
+}
+.modal .sub-modal > input {
+  width: 100%;
+  height: 39px;
+  font-size: 0.97em;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+  padding: 0 11.6px;
+  margin-bottom: 15.5px;
+}
+.sub-modal input:focus {
+  border: none;
+  box-shadow: 0 0 5px #ccc;
+  opacity: 1;
+  outline: 0;
+}
+.main-modal button {
+  display: inline-block;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.05);
+  background-color: #000000;
+  font-size: 0.97em;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  font-weight: bolder;
+  line-height: 2.4em;
+  padding: 0 18.6px;
+  margin-right: 15.5px;
+}
+.main-modal button:hover {
+  opacity: 0.85;
+  transition: all 0.2;
+}
+.main-modal p a {
+  color: #000000;
+  font-size: 16px;
+  text-decoration: none;
+  opacity: 1;
+}
+.main-modal p a:hover {
+  opacity: 0.8;
+}
+*/
+
+
+content {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1e2023;
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.row {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.py-7\.5 {
+  padding: 30px 0;
+}
+
+.topbar {
+  width: 100%;
+  height: 53px;
+  background-color: #1e2023;
+}
+.navbar {
+  width: 100%;
+  height: 39px;
+  background-color: #fffcfc;
+}
+.content-top {
+
+  background-color: #f7f7f7;
+  border-top: 1px solid #d7d7d7;
+  border-bottom: 2px solid #d7d7d7;
+}
+.content-top h2 {
+  line-height: 1.4;
+}
+
+.valid {
+  max-width: 520px;
+  margin: 0 auto 25px;
+  line-height: 1.8;
+}
+.valid h1 {
+  line-height: 1.4;
+}
+.valid-input {
+  height: 34px;
+  color: #1e2023;
+  background: #f7f7f7;
+  border-radius: 3px;
+  border: 1px solid #a3a3a3;
+  box-shadow: inset 0 1px 2px rgb(30 32 35 / 10%);
+  transition: box-shadow .5s,border-color .25s ease-in-out;
+}
+.valid-input:focus {
+  border: 1px solid #4c4c4c;
+  box-shadow: 0 0 5px #a3a3a3;
+  outline: 5px auto #15aadc!important;
+}
+.forgot-password {
+  color: #006f9e;
+  float: right!important;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.button-submit button{
+  min-width: 170px;
+  /* display: inline-block; */
+  padding: 0.6em 1em;
+  color: #fff;
+  background-color: #19aadb;
+  font-size: .9375rem;
+  text-align: center;
+  line-height: 1;
+  transition: background-color .25s ease-out,color .25s ease-out;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid #008fbf;
+}
+.signup {
+  color: #006f9e;
+}
+.signup:hover {
+  text-decoration: underline;
+}
+
+.wu-tos {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.policy {
+  color: #006f9e;
+  text-decoration: underline;
+  line-height: 28px;
+}
+
+footer {
+  background-color: #1e2023;
+  padding: 30px 0;
+}

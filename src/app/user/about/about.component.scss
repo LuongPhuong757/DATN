@@ -1,0 +1,40 @@
+@import  '../../../styles.scss';
+
+.main-about {
+  padding: 30px 15px;
+}
+.content-about {
+  padding: 45px 30px;
+  /* animation: titleFadeIn ease 1.5s; */
+}
+.about-section {
+  display: flex;
+}
+.content-about .sub-about {
+  margin: 0 -30px;
+}
+.content-about .about-img,
+.content-about .about-text {
+  margin: 0 30px 30px;
+}
+.main-why-choose-us {
+  display: flex;
+  text-align: center;
+  padding-top: 20px;
+}
+.main-why-choose-us img {
+  width: 100px;
+  margin: 0 auto 12px;
+}
+.main-why-choose-us h3 {
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+}
+.about-section .feedback {
+  background-color: #fff;
+  margin-top: -10px;
+}
+.sub-about .about-text-h3,
+.feedback-title {
+  animation: titleFadeIn ease 1.5s;
+}

@@ -1,0 +1,33 @@
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="http://localhost:3000/{{userInfo.avatar}}"
+                                      width="50px"
+                                      alt="Admin's avatar">
+    <div>
+      <p class="app-sidebar__user-name"><b>{{userInfo.userName }}</b></p>
+
+      <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+    </div>
+  </div>
+  <hr>
+  <ul class="app-menu">
+    <li><a class="app-menu__item active" routerLink="/admin/dashboard" routerLinkActive="active"><i
+      class='app-menu__icon bx bx-tachometer'></i><span
+      class="app-menu__label">Tổng quan</span></a></li>
+
+    <li><a class="app-menu__item" routerLink="/admin/manage-user" routerLinkActive="active"><i
+      class='app-menu__icon bx bx-user-voice'></i><span
+      class="app-menu__label">Quản lý khách hàng</span></a></li>
+    <li><a class="app-menu__item" routerLink="/admin/manage-product" routerLinkActive="active"><i
+      class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+    </li>
+    <li><a class="app-menu__item" routerLink="/admin/manage-order" routerLinkActive="active"><i
+      class='app-menu__icon bx bx-task'></i><span
+      class="app-menu__label">Quản lý đơn hàng</span></a></li>
+   <!-- <li><a class="app-menu__item" routerLink="/admin/manage-project" routerLinkActive="active"><i
+      class='app-menu__icon bx bx-run'></i><span
+      class="app-menu__label">Quản lý dự án
+        </span></a></li>-->
+  </ul>
+</aside>

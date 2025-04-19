@@ -1,0 +1,72 @@
+@import  '../../../styles.scss';
+
+.main-contact {
+  padding: 30px 15px;
+}
+.main-contact .fb-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.85em;
+  color: #999;
+}
+.main-contact .fb-icon a {
+  min-width: 2.5em;
+  min-height: 2.5em;
+  display: inline-block;
+  position: relative;
+  color: silver;
+  font-size: 0.97em;
+  line-height: 2.19em;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid currentColor;
+  border-radius: 999px !important;
+  margin: 0 0.12em 1em;
+  cursor: pointer;
+  opacity: 1;
+  transition: transform 0.3s, border 0.3s, background 0.3s, box-shadow 0.3s,
+    opacity 0.3s, color 0.3s;
+}
+.main-contact .fb-icon a:hover {
+  color: #fff;
+  background-color: #3a589d;
+  border: 2px solid #3a589d;
+}
+.main-contact .fb-icon a i {
+  position: absolute;
+  font-size: 1.2em;
+  top: 7px;
+  left: 6px;
+}
+.contact-text {
+  flex: 1;
+}
+.contact-text-h3 {
+  margin-bottom: 34px;
+  border-bottom: 2px solid #ececec;
+  animation: titleFadeIn ease 1.5s;
+}
+.contact-text-h3 h3 {
+  display: inline-block;
+  text-transform: uppercase;
+  padding-bottom: 7.5px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: -2px;
+}
+.main-contact .sub-about {
+  margin: 0 -10px;
+}
+.main-contact .about-text {
+  flex: 1;
+  padding: 0 10px 20px;
+}
+.main-contact .about-map {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px 20px;
+  margin-bottom: 20px;
+}
+.sub-about .about-text-h3 {
+    animation: titleFadeIn ease 1.5s;
+}

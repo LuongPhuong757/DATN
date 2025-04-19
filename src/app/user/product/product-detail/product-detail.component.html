@@ -1,0 +1,100 @@
+<div class="main-product-details row">
+  <div class="nav-img">
+    <img *ngFor="let image of productDetail.listImage" src="{{'http://localhost:3000/'+image}}" alt="">
+  </div>
+  <div class="main-img" style="background-image: url(http://localhost:3000/{{productDetail.listImage[0]}})">
+    <div class="badge-container" *ngIf="productDetail.discount">
+      <div class="badge-inner">
+        -{{productDetail.discount}}%
+      </div>
+    </div>
+  </div>
+  <div class="product-details-info">
+    <div class="product-breadcrumb">
+      <a routerLink="/main" routerLinkActive="active">TRANG CHỦ / </a>
+      <a routerLink="/product" routerLinkActive="active">SẢN PHẨM / </a>
+      <!--      <h4>COMBO</h4>-->
+    </div>
+    <h1 class="mt-2">{{productDetail.name}}</h1>
+    <div class="product-price">
+      <del *ngIf="productDetail.discount">
+        {{ productDetail.price }} ₫
+      </del>
+      {{  realMoneyPrice(productDetail.price, productDetail.discount ?? null)   }} ₫
+    </div>
+    <div class="product-short-description">
+      <p>
+        <!-- Mã sản phẩm 81144004 <br> Kích thước RxSxC (cm)
+         105x105x42 <br> Chất liệu Khung kim loại, mặt đá
+         <br> Bảo hành Bảo hành 2 năm <br>-->
+        {{productDetail.description}}
+      </p>
+    </div>
+    <div class="product-contact">
+      <p><a>Liên hệ mua hàng</a></p>
+      <p>Danh mục: <a routerLink="/product"
+                      routerLinkActive="active">{{ productDetail.category === 1 ? 'Combo' : productDetail.category === 2 ? 'Phòng khách' : productDetail.category === 3 ? 'Phòng ngủ' : productDetail.category === 4 ? 'Tủ bếp' :productDetail.category === 5 ? 'Văn phòng' : productDetail.category === 6 ? 'Đồ trang trí' : productDetail.category === 7 ? 'Bàn' : productDetail.category === 8 ? 'Ghế' : null }}</a>
+      </p>
+    </div>
+    <button class="btn w-full mt-3" (click)="addProductToCart(productDetail.id)">
+      <a>Thêm vào giỏ hàng</a>
+    </button>
+  </div>
+</div>
+<div class="product-details-text row">
+  <ul class="product-tab">
+    <li class="description-tab js-description-tab"><a>Mô tả</a></li>
+    <!--    <li class="review-tab js-review-tab"><a href="#">Đánh giá (0)</a></li>-->
+  </ul>
+  <div class="tab-panels js-description-tab-panels">
+    <p>{{productDetail.description}}</p>
+    <!--<br>
+    <p>Điểm nổi bật của dòng sản phẩm này là mặt bàn bằng đá Quartz
+      thạch anh cao cấp của Vicostone với đặc tính chống xước,
+      chống thấm vượt trội so với đá tự nhiên.</p>
+    <br>
+    <p>Khung kim loại cao cấp</p>
+    <br>
+    <p>Thành phần kim loại sử dụng trong sản phẩm bàn trà Nhà Đẹp là
+      thép chống gỉ, vừa tạo hiệu ứng sang trọng cho sản phẩm, vừa
+      giữ cho sản phẩm luôn giữ được vẻ đẹp ban đầu.</p>
+    <br>-->
+  </div>
+  <div class="tab-panels js-review-tab-panels">
+    <h3>Đánh giá</h3>
+    <p>Chưa có đánh giá nào.</p>
+    <!--<div class="review-form">
+      <h3>Hãy là người đầu tiên nhận xét “Bàn trà mặt đá Selena”</h3>
+      <div class="comment-form-rating">
+        <label for="rating">Đánh giá của bạn</label>
+        <div class="star-rating">
+          <p class="star"><i class="ti-star"></i></p>
+          <p class="star"><i class="ti-star"></i><i class="ti-star"></i></p>
+          <p class="star"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i></p>
+          <p class="star"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i
+            class="ti-star"></i></p>
+          <p class="star"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i
+            class="ti-star"></i><i class="ti-star"></i></p>
+        </div>
+      </div>
+      <div class="comment-form-comment">
+        <label for="comment">Nhận xét của bạn *</label>
+        &lt;!&ndash; <br> &ndash;&gt;
+        <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
+      </div>
+      <div class="comment-form-author">
+        <div class="author">
+          <label for="author">Tên *</label>
+          <br>
+          <input id="author" name="author" type="text" value="" size="30" required="">
+        </div>
+        <div class="email">
+          <label for="email">Email *</label>
+          <br>
+          <input id="email" name="email" type="email" value="" size="30" required="">
+        </div>
+      </div>
+      <input name="submit" type="submit" id="submit" class="submit" value="Gửi đi">
+    </div>-->
+  </div>
+</div>

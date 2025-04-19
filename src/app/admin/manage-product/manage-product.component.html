@@ -1,0 +1,73 @@
+
+<main class="app-content">
+  <div class="app-title" style="margin-top: 40px;">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active">
+        <a href="#"><b>Danh sách sản phẩm</b></a>
+      </li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <div class="row element-button">
+            <div class="col-sm-2">
+
+              <button class="btn btn-add btn-sm"  routerLink="create-product"  routerLinkActive="active" title="Thêm"><i class="fas fa-plus"></i>
+                Tạo mới sản phẩm</button>
+            </div>
+            <!--<div class="col-sm-2">
+              <button class="btn btn-delete btn-sm" type="button" title="Xóa" (click)="onDelete()"><i
+                class="fas fa-trash-alt"></i> Xóa tất cả </button>
+            </div>-->
+          </div>
+          <table class="table table-hover table-bordered" id="sampleTable">
+            <thead>
+            <tr>
+              <!-- <th width="10"><input type="checkbox" id="all"></th> -->
+              <th>Mã sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Ảnh</th>
+              <th>Số lượng</th>
+              <th>Tình trạng</th>
+              <th>Giá tiền</th>
+              <th>Giảm giá</th>
+              <th>Danh mục</th>
+              <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of listProduct">
+              <!-- <td width="10"><input type="checkbox" name="check1" value="1"></td> -->
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td><img *ngFor="let image of product.listImage" src="{{'http://localhost:3000/'+image}}" alt="" width="100px;"></td>
+              <td>{{product.amount}}</td>
+              <td>
+                <span *ngIf="product.amount" class="badge bg-success">Còn hàng</span>
+                <span *ngIf="!product.amount" class="badge bg-danger">Hết hàng</span>
+              </td>
+              <td>{{product.price}} đ</td>
+              <td>{{product.discount || 0}} %</td>
+              <td >{{product['category']}} </td>
+              <td class=" text-center"><button class="btn btn-primary btn-sm trash mr-1" type="button" title="Xóa"
+                          (click)="onDelete(product.id)"><i class="fas fa-trash-alt"></i>
+              </button>
+                <button class="btn btn-primary btn-sm edit" type="button"  (click)="onEdit(product.id)"  title="Sửa" id="show-emp" data-toggle="modal"
+                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+
+              </td>
+
+
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

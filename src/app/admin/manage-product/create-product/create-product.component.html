@@ -1,0 +1,91 @@
+
+<main class="app-content">
+  <div class="app-title" style="margin-top: 40px;">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active">
+        <a href="#"><b>Thêm mới sản phẩm</b></a>
+      </li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+
+          <div class="tile-body">
+            <form class="row" [formGroup]="createProductForm">
+              <div class="form-group col-md-4">
+                <label for="productName" class="control-label">Tên sản phẩm</label>
+                <input name="productName"
+                       id="productName"
+                       formControlName="productName" class="form-control" type="text">
+              </div>
+              <div class="form-group  col-md-4">
+                <label for="productAmount" class="control-label">Số lượng</label>
+                <input name="productAmount"
+                       id="productAmount"
+                       formControlName="productAmount" class="form-control" type="number">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="productCategory" class="control-label">Danh mục</label>
+                <select class="form-control" name="productCategory" id="productCategory"
+                        formControlName="productCategory">
+                  <!--                <option>&#45;&#45; Chọn danh mục &#45;&#45;</option>-->
+                  <option value=1>Combo</option>
+                  <option value=2>Phòng khách</option>
+                  <option value=3>Phòng ngủ</option>
+                  <option value=4>Tủ bếp</option>
+                  <option value=5>Văn phòng</option>
+                  <option value=6>Đồ trang trí</option>
+                  <option value=7>Bàn</option>
+                  <option value=8>Ghế</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 ">
+                <label for="productMaterial" class="control-label">Chất liệu</label>
+                <input name="productMaterial"
+                       id="productMaterial"
+                       formControlName="productMaterial" class="form-control" type="text">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="productPrice" class="control-label">Giá bán</label>
+                <input name="productPrice"
+                       id="productPrice"
+                       formControlName="productPrice" class="form-control" type="number">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="productDiscount" class="control-label">Giảm giá</label>
+                <input name="productDiscount"
+                       id="productDiscount"
+                       formControlName="productDiscount" class="form-control" type="number">
+              </div>
+              <div class="form-group col-md-12">
+                <label for="productImg" class="control-label">Ảnh sản phẩm</label>
+                <div id="myfileupload">
+                  <input type="file" #fileInput id="productImg" name="productImg" formControlName="productImg"
+                         (change)="onFileSelected($event)" accept="image/*" class="mb-2"/>
+                </div>
+                <div id="thumbbox">
+                  <img [src]="imageUrl" *ngIf="imageUrl" alt="Selected Image" width="300"/>
+                </div>
+
+              </div>
+              <div class="form-group col-md-12">
+                <label for="productDescription" class="control-label">Mô tả sản phẩm</label>
+                <textarea name="productDescription"
+                          id="productDescription"
+                          formControlName="productDescription" class="form-control" name="mota" id="mota"></textarea>
+                <script>CKEDITOR.replace('mota');</script>
+              </div>
+
+            </form>
+            <button class="btn btn-save mr-2" type="button" (click)="onCreateProduct()">Tạo</button>
+            <button class="btn btn-cancel" routerLink="/admin/manage-product" routerLinkActive="active">Hủy bỏ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
