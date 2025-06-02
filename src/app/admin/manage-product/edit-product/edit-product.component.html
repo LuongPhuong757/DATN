@@ -31,14 +31,14 @@
                 <select class="form-control" name="productCategory" id="productCategory"
                         formControlName="productCategory">
                   <!--                <option>&#45;&#45; Chọn danh mục &#45;&#45;</option>-->
-                  <option value=0>Combo</option>
-                  <option value=1>Phòng khách</option>
-                  <option value=2>Phòng ngủ</option>
-                  <option value=3>Tủ bếp</option>
-                  <option value=4>Văn phòng</option>
-                  <option value=5>Đồ trang trí</option>
-                  <option value=6>Bàn</option>
-                  <option value=7>Ghế</option>
+                  <option value=1>Combo</option>
+                  <option value=2>Phòng khách</option>
+                  <option value=3>Phòng ngủ</option>
+                  <option value=4>Tủ bếp</option>
+                  <option value=5>Văn phòng</option>
+                  <option value=6>Đồ trang trí</option>
+                  <option value=7>Bàn</option>
+                  <option value=8>Ghế</option>
                 </select>
               </div>
               <div class="form-group col-md-4 ">
@@ -64,6 +64,7 @@
                 <div id="myfileupload">
                   <input type="file" #fileInput id="productImg" name="productImg" formControlName="productImg"
                          (change)="onFileSelected($event)" accept="image/*" class="mb-2"/>
+                
                 </div>
                 <div id="thumbbox">
                   <img [src]="imageUrl" *ngIf="imageUrl" alt="Selected Image" width="300"/>

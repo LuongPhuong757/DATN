@@ -7,6 +7,12 @@ import { AuthService } from './auth.service';
  class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
+    const role =  sessionStorage.getItem('role');
+    console.log(role,'-------------')
+    if (role !== 'ADMIN') {
+      this.router.navigate(['']);
+      return false;
+    }
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['login']);
       return false;

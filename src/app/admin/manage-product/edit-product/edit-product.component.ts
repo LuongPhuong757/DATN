@@ -66,6 +66,7 @@ export class EditProductComponent implements OnInit {
           productDiscount: this.product.discount,
           productPrice: this.product.price,
           productDescription: this.product.description,
+          productImg: this.product.listImage[0]
         });
       })
     });
@@ -87,8 +88,9 @@ export class EditProductComponent implements OnInit {
 
   onUpdateProduct(): void {
     const imageUrl: any = typeof this.imageUrl === "string" ? this.imageUrl.split(',') : this.imageUrl;
-    const arrayImage = [];
-    arrayImage.push(imageUrl[1]);
+    console.log('=============>',  this.imageUrl)
+    // const arrayImage = [];
+    // arrayImage.push(imageUrl[1]);
     const req = {
       name: this.editProductForm.get('productName')?.value,
       amount: this.editProductForm.get('productAmount')?.value,
@@ -96,9 +98,10 @@ export class EditProductComponent implements OnInit {
       material: this.editProductForm.get('productMaterial')?.value,
       price: this.editProductForm.get('productPrice')?.value,
       discount: this.editProductForm.get('productDiscount')?.value,
-      images: arrayImage,
+      // images: arrayImage,
       description: this.editProductForm.get('productDescription')?.value,
     }
+    
     this.apiProduct.updateProduct(this.idProduct, req).subscribe(res => {
       if (res) {
         console.log(res);

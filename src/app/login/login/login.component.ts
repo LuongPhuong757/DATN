@@ -49,6 +49,8 @@ export class LoginComponent {
       if (res.user) {
         this.message = 'Đăng nhập thành công!';
         sessionStorage.setItem('token', res.accessToken);
+        sessionStorage.setItem('role', res.user.roles);
+        // sessionStorage.setItem('userna')
         if (res.user.roles === 'USER') {
           this.router.navigate(['']);
           sessionStorage.setItem('role', 'USER');

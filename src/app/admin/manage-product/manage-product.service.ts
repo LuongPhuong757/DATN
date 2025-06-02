@@ -12,6 +12,7 @@ export class ManageProductService {
   constructor(private http: HttpClient) { }
 
   getProduct(req: any): Observable<any> {
+    console.log(req, '-----------------------')
     const params = createRequestOption(req);
     return this.http.get<any>(`${environment.url}/product`, { params, observe: 'response' });
   }
