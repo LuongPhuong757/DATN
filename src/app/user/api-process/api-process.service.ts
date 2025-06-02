@@ -34,6 +34,15 @@ export class ApiProcessService {
     return this.http.post<any>(`${environment.url}/cart`, req, httpOptions);
   }
 
+  public updateProductInCart (id: any, req: any): Observable<any> {
+     const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer '  + sessionStorage.getItem('token')
+      })
+    };
+    return this.http.put<any>(`${environment.url}/cart/${id}`, req, httpOptions);
+  }
+
   getProject(req: any): Observable<any> {
     const params = createRequestOption(req);
     return this.http.get<any>(`${environment.url}/product`, { params, observe: 'response' });

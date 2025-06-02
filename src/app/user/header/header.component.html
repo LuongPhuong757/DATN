@@ -1,38 +1,27 @@
 <div class="relative w-full">
   <div id="header1">
-    <div
-      class="main-header1 row m-auto  justify-between text-xs font-normal px-4"
-    >
+    <div class="main-header1 row m-auto  justify-between text-xs font-normal px-4">
       <div id="support">
         <p>
           <a href="tel:19009999"><i class="ti-mobile"></i>HOTLINE: 1900 9999</a>
         </p>
         <p>
-          <a href="mailto:gokivietnam26@gmail.com"
-          ><i class="ti-email"></i>gokivietnam26@gmail.com</a
-          >
+          <a href="mailto:gokivietnam26@gmail.com"><i class="ti-email"></i>gokivietnam26@gmail.com</a>
         </p>
       </div>
       <div id="signin">
         <p>
-          <button
-            routerLink="user/login" routerLinkActive="active"
-            class="js-sign-in"
-          >Đăng nhập
-          </button
-          >
-          <span> | </span>
-          <button
-            routerLink="user/signup" routerLinkActive="active"
-            class="js-sign-in"
-          >Đăng ký
-          </button
-          >
-          <span *ngIf="activeShoppingCart" > | </span>
-          <button *ngIf="activeShoppingCart" (click)="onLogout()" routerLink="/"
-             routerLinkActive="active" class="js-sign-in"
-          >Đăng xuất</button
-          >
+          <button *ngIf="!username" routerLink="user/login" routerLinkActive="active" class="js-sign-in">Đăng nhập
+          </button>
+          <button *ngIf="username">
+            {{ username }}
+          </button>
+          <span *ngIf="!username"> | </span>
+          <button *ngIf="!username" routerLink="user/signup" routerLinkActive="active" class="js-sign-in">Đăng ký
+          </button>
+          <span *ngIf="activeShoppingCart"> | </span>
+          <button *ngIf="activeShoppingCart" (click)="onLogout()" routerLink="/" routerLinkActive="active"
+            class="js-sign-in">Đăng xuất</button>
         </p>
       </div>
     </div>
@@ -40,16 +29,13 @@
 
   <div id="header2">
     <div class="main-header2 row">
-      <a href="#"
-      ><img src="./assets/img/logo1.png" alt="logo" class="logo-img"
-      /></a>
+      <a href="#"><img src="./assets/img/logo1.png" alt="logo" class="logo-img" /></a>
 
       <ul id="nav">
         <li><a routerLink="/main" routerLinkActive="active">Trang chủ</a></li>
         <li><a routerLink="/about" routerLinkActive="active">Giới thiệu</a></li>
         <li>
-          <a routerLink="/product" routerLinkActive="active"
-          >Sản phẩm
+          <a routerLink="/product" routerLinkActive="active">Sản phẩm
 
           </a>
 
@@ -62,9 +48,7 @@
           <a class="js-search"><i class="ti-search"></i></a>
         </li> -->
         <li *ngIf="activeShoppingCart">
-          <a class="cart" routerLink="/shopping-cart" routerLinkActive="active"
-          ><i class="ti-shopping-cart"></i
-          ></a>
+          <a class="cart" routerLink="/shopping-cart" routerLinkActive="active"><i class="ti-shopping-cart"></i></a>
         </li>
       </ul>
     </div>
@@ -80,7 +64,7 @@
           <li>
             <div class="main-modal-search">
               <div class="modal-search-input">
-                <input type="text" placeholder="Tìm kiếm ..."/>
+                <input type="text" placeholder="Tìm kiếm ..." />
               </div>
               <div class="modal-search-button">
                 <button id="search"><i class="ti-search"></i></button>
@@ -93,25 +77,18 @@
             <a routerLink="/about" routerLinkActive="active">Giới thiệu</a>
           </li>
           <li>
-            <a routerLink="/product" routerLinkActive="active"
-            >Sản phẩm <i class="ti-angle-down"></i
-            ></a>
+            <a routerLink="/product" routerLinkActive="active">Sản phẩm <i class="ti-angle-down"></i></a>
             <ul class="subnav-product">
-              <li><a
-                routerLink="/product" routerLinkActive="active">Phòng
-                khách</a></li>
-              <li><a
-                routerLink="/product" routerLinkActive="active">Phòng
-                ngủ</a></li>
-              <li><a
-                routerLink="/product" routerLinkActive="active">Tủ
-                bếp</a></li>
-              <li><a
-                routerLink="/product" routerLinkActive="active">Văn
-                phòng</a></li>
-              <li><a
-                routerLink="/product" routerLinkActive="active">Đồ
-                trang trí</a></li>
+              <li><a routerLink="/product" routerLinkActive="active">Phòng
+                  khách</a></li>
+              <li><a routerLink="/product" routerLinkActive="active">Phòng
+                  ngủ</a></li>
+              <li><a routerLink="/product" routerLinkActive="active">Tủ
+                  bếp</a></li>
+              <li><a routerLink="/product" routerLinkActive="active">Văn
+                  phòng</a></li>
+              <li><a routerLink="/product" routerLinkActive="active">Đồ
+                  trang trí</a></li>
             </ul>
           </li>
           <li><a href="/project">Dự án</a></li>
@@ -129,17 +106,10 @@
           </li>
           <li>
             <div class="footer-social">
-              <a href="https://www.facebook.com/noithatgoki26/"
-              ><i class="ti-facebook"></i
-              ></a>
-              <a href="https://www.instagram.com/_vuthuydungg_/"
-              ><i class="ti-instagram"></i
-              ></a>
+              <a href="https://www.facebook.com/noithatgoki26/"><i class="ti-facebook"></i></a>
+              <a href="https://www.instagram.com/_vuthuydungg_/"><i class="ti-instagram"></i></a>
               <a href="#"><i class="ti-twitter-alt"></i></a>
-              <a
-                href="https://www.youtube.com/channel/UCHsYPSIbmbQ1-Oi2ttwi-Gg/featured"
-              ><i class="ti-youtube"></i
-              ></a>
+              <a href="https://www.youtube.com/channel/UCHsYPSIbmbQ1-Oi2ttwi-Gg/featured"><i class="ti-youtube"></i></a>
             </div>
           </li>
         </ul>

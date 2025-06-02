@@ -1,115 +1,80 @@
 <div class="container">
-  <div class="contact-text-h3"><h3 _ngcontent-ng-c646139450="">GIỎ HÀNG</h3></div>
+  <div class="contact-text-h3">
+    <h3 _ngcontent-ng-c646139450="">GIỎ HÀNG</h3>
+  </div>
 
   <div class="flex row-large w-auto row-divided">
     <div class="col cart-detail py-0">
-      <form
-        class="mb-5 w-full"
-        action="https://hoaphatnoithat.net.vn/gio-hang"
-        method="post"
-      >
+      <form class="mb-5 w-full" action="https://hoaphatnoithat.net.vn/gio-hang" method="post">
         <!-- <div class="cart-wrapper sm-touch-scroll"> -->
         <table class="shop_table" cellspacing="0">
           <thead>
-          <tr>
-            <th class="product-name" colspan="3">Sản phẩm</th>
-            <th class="product-price text-center">Giá</th>
-            <th class="product-quantity">Số lượng</th>
-            <th class="product-subtotal">Tạm tính</th>
-          </tr>
+            <tr>
+              <th class="product-name" colspan="3">Sản phẩm</th>
+              <th class="product-price text-center">Giá</th>
+              <th class="product-quantity">Số lượng</th>
+              <th class="product-subtotal">Tạm tính</th>
+            </tr>
           </thead>
           <tbody>
-          <tr class="card_item" *ngFor="let product of listProduct.result; index as i;">
-            <td class="product-remove">
-              <a (click)="deleteInCart(product.id)"
-                 class="remove"
-                 aria-label="Xóa sản phẩm này"
-                 data-product_id="1401"
-                 data-product_sku="TQ11"
-              >×</a
-              >
-            </td>
+            <tr class="card_item" *ngFor="let product of listProduct.result; index as i;">
+              <td class="product-remove">
+                <a (click)="deleteInCart(product.id)" class="remove" aria-label="Xóa sản phẩm này"
+                  data-product_id="1401" data-product_sku="TQ11">×</a>
+              </td>
 
-            <td class="product-thumbnail px-2">
-              <a
-              ><img
-                width="250"
-                height="250"
-                src="{{'http://localhost:3000/'+product['product'].listImage[0]}}"
-                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wvs-archive-product-image lazy-load-active"
+              <td class="product-thumbnail px-2">
+                <a><img width="250" height="250" src="{{'http://localhost:3000/'+product['product'].listImage[0]}}"
+                    class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wvs-archive-product-image lazy-load-active" /></a>
+              </td>
 
-              /></a>
-            </td>
-
-            <td class="product-name" data-title="Sản phẩm">
-              <!--<b>Ghế Giám đốc TQ11</b> <br>
+              <td class="product-name" data-title="Sản phẩm">
+                <!--<b>Ghế Giám đốc TQ11</b> <br>
               <span>CHẤT LIỆU: PVC</span> <br>-->
-              <span>{{product['product'].name}}</span>
+                <span>{{product['product'].name}}</span>
 
-            </td>
+              </td>
 
-            <td class="product-price text-center" data-title="Giá">
-                <span class="woocommerce-Price-amount amount"
-                ><bdi
-                >{{realMoneyPrice(product['product'].price, product['product'].discount)}}&nbsp;<span
-                  class="woocommerce-Price-currencySymbol"
-                >₫</span
-                ></bdi
-                ></span
-                >
-            </td>
+              <td class="product-price text-center" data-title="Giá">
+                <span class="woocommerce-Price-amount amount"><bdi>{{realMoneyPrice(product['product'].price,
+                    product['product'].discount)}}&nbsp;<span
+                      class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
+              </td>
 
-            <td class="product-quantity" data-title="Số lượng">
-              <div class="quantity buttons_added">
-                <input type="button" value="-" (click)="changeAmount(false, product['product'].id)"
-                       class="minus button is-form"/>
-                <!-- <label class="screen-reader-text" for="quantity_6509bd6fe4dc2"
+              <td class="product-quantity" data-title="Số lượng">
+                <div class="quantity buttons_added">
+                  <input type="button" value="-" (click)="changeAmount(false,product.id, product['product'].id)"
+                    class="minus button is-form" />
+                  <!-- <label class="screen-reader-text" for="quantity_6509bd6fe4dc2"
                   >Ghế Giám đốc TQ11 số lượng</label
                 > -->
-                <input
-                  type="number"
-                  id="quantity_6509bd6fe4dc2"
-                  class="input-text qty text"
-                  step="1"
-                  min="0"
-                  max=""
-                  name="cart[6b5439442db7b548c1ea71db6c7fb3a6][qty]"
-                  value="{{product.amount}}"
-                  title="SL"
-                  size="4"
-                  placeholder=""
-                  inputmode="numeric"
-                />
-                <input type="button" value="+" (click)="changeAmount(true, product['product'].id)"
-                       class="plus button is-form"/>
-              </div>
-            </td>
+                  <input type="number" id="quantity_6509bd6fe4dc2" class="input-text qty text" step="1" min="0" max=""
+                    name="cart[6b5439442db7b548c1ea71db6c7fb3a6][qty]" value="{{product.amount}}" title="SL" size="4"
+                    placeholder="" inputmode="numeric" />
+                  <input type="button" value="+" (click)="changeAmount(true,product.id, product['product'].id)"
+                    class="plus button is-form" />
+                </div>
+              </td>
 
-            <td class="product-subtotal" data-title="Tạm tính">
+              <td class="product-subtotal" data-title="Tạm tính">
 
-                <span class="woocommerce-Price-amount amount"
-                >
-                  <bdi
-                  >{{provisionalMoney(realMoneyPrice(product['product'].price, product['product'].discount), product.amount)}}
-                    <span
-                      class="woocommerce-Price-currencySymbol"
-                    >₫ </span
-                    ></bdi
-                  ></span
-                >
-            </td>
-          </tr>
+                <span class="woocommerce-Price-amount amount">
+                  <bdi>{{provisionalMoney(realMoneyPrice(product['product'].price, product['product'].discount),
+                    product.amount)}}
+                    <span class="woocommerce-Price-currencySymbol">₫ </span></bdi></span>
+              </td>
+            </tr>
 
-          <tr>
-            <td colspan="6" class="actions clear">
-              <div class="continue-shopping pull-left text-left">
-                <a routerLink="/product" routerLinkActive="active"
-                   class="button-continue-shopping button primary is-outline">
-                  ←&nbsp;Tiếp tục xem sản phẩm
-                </a>
-              </div>
+            <tr>
+              <td colspan="6" class="actions clear">
+                <div class="continue-shopping pull-left text-left">
+                  <a routerLink="/product" routerLinkActive="active"
+                    class="button-continue-shopping button primary is-outline">
+                    ←&nbsp;Tiếp tục xem sản phẩm
+                  </a>
+                </div>
 
-              <!-- <button
+                <!-- <button
                  type="submit"
                  class="button primary mt-0 pull-left small"
                  name="update_cart"
@@ -120,7 +85,7 @@
                  Cập nhật giỏ hàng
                </button>-->
 
-             <!-- <input
+                <!-- <input
                 type="hidden"
                 id="woocommerce-cart-nonce"
                 name="woocommerce-cart-nonce"
@@ -130,8 +95,8 @@
               name="_wp_http_referer"
               value="/gio-hang"
             />-->
-            </td>
-          </tr>
+              </td>
+            </tr>
           </tbody>
         </table>
         <!-- </div> -->
@@ -145,78 +110,64 @@
             <div class="cart_totals">
               <table cellspacing="0">
                 <thead>
-                <tr>
-                  <th class="product-name" colspan="2">Cộng giỏ hàng</th>
-                </tr>
+                  <tr>
+                    <th class="product-name" colspan="2">Cộng giỏ hàng</th>
+                  </tr>
                 </thead>
               </table>
 
 
               <table cellspacing="0" class="shop_table shop_table_responsive">
                 <tbody>
-<!--                <form class="row" [formGroup]="orderForm">-->
-                <tr class="cart-subtotal">
-                  <th>Họ tên</th>
-                  <td data-title="Họ tên">
-                    <input value="{{product.userName}}"  type="text"/>
-                  </td>
-                </tr>
-                <tr class="cart-subtotal">
-                  <th>Số điện thoại</th>
-                  <td data-title="SDT">
-                    <input  value="{{product.phoneNumber}}" type="text"/>
-                  </td>
-                </tr>
-                <tr class="cart-subtotal">
-                  <th>Email</th>
-                  <td data-title="Email">
-                    <input value="{{product.email}}"  type="email"/>
-                  </td>
-                </tr>
-                <tr class="cart-subtotal">
-                  <th>Địa chỉ</th>
-                  <td data-title="Địa chỉ">
-                    <input value="{{product.address}}"  type="text"/>
-                  </td>
-                </tr>
-                <tr class="cart-subtotal">
-                  <th>Số lượng sản phẩm</th>
-                  <td data-title="Tạm tính">
-                      <span class="woocommerce-Price-amount amount"
-                      ><bdi
-                      >{{totalProduct}}&nbsp;
-                          </bdi
-                          ></span
-                      >
-                  </td>
-                </tr>
+                  <!--                <form class="row" [formGroup]="orderForm">-->
+                  <tr class="cart-subtotal">
+                    <th>Họ tên</th>
+                    <td data-title="Họ tên">
+                      <input value="{{product.userName}}" type="text" />
+                    </td>
+                  </tr>
+                  <tr class="cart-subtotal">
+                    <th>Số điện thoại</th>
+                    <td data-title="SDT">
+                      <input value="{{product.phoneNumber}}" type="text" />
+                    </td>
+                  </tr>
+                  <tr class="cart-subtotal">
+                    <th>Email</th>
+                    <td data-title="Email">
+                      <input value="{{product.email}}" type="email" />
+                    </td>
+                  </tr>
+                  <tr class="cart-subtotal">
+                    <th>Địa chỉ</th>
+                    <td data-title="Địa chỉ">
+                      <input value="{{product.address}}" type="text" />
+                    </td>
+                  </tr>
+                  <tr class="cart-subtotal">
+                    <th>Số lượng sản phẩm</th>
+                    <td data-title="Tạm tính">
+                      <span class="woocommerce-Price-amount amount"><bdi>{{totalProduct}}&nbsp;
+                        </bdi></span>
+                    </td>
+                  </tr>
 
-                <tr class="order-total">
-                  <th>Tổng tiền</th>
-                  <td data-title="Tổng">
-                    <strong
-                    ><span class="woocommerce-Price-amount amount"
-                    ><bdi
-                    >{{totalMoney}}&nbsp;<span
-                      class="woocommerce-Price-currencySymbol"
-                    >₫</span
-                    ></bdi
-                    ></span
-                    ></strong
-                    >
-                  </td>
-                </tr>
-<!--                </form>-->
+                  <tr class="order-total">
+                    <th>Tổng tiền</th>
+                    <td data-title="Tổng">
+                      <strong><span class="woocommerce-Price-amount amount"><bdi>{{totalMoney}}&nbsp;<span
+                              class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong>
+                    </td>
+                  </tr>
+                  <!--                </form>-->
                 </tbody>
               </table>
 
               <div class="wc-proceed-to-checkout">
-<!--               -->
-                <button routerLink="buy-success" routerLinkActive="active"  (click)="addOrder()"
-                   class="checkout-button button alt wc-forward wp-element-button"
-                >
-                  ĐẶT HÀNG</button
-                >
+                <!--               -->
+                <button routerLink="buy-success" routerLinkActive="active" (click)="addOrder()"
+                  class="checkout-button button alt wc-forward wp-element-button">
+                  ĐẶT HÀNG</button>
               </div>
             </div>
             <div class="cart-sidebar-content relative"></div>
@@ -229,4 +180,3 @@
     </div>
   </div>
 </div>
-

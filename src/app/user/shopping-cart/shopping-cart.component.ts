@@ -59,9 +59,9 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
-  changeAmount(increase: boolean, productId: any): void {
+  changeAmount(increase: boolean,id: any, productId: any): void {
     if (increase) {
-      this.api.addProductToCart({productId: productId}).subscribe(res => {
+      this.api.updateProductInCart(id,{type: 0}).subscribe(res => {
         if (res) {
           // this.totalProduct++;
           this.getCart();
@@ -81,6 +81,24 @@ export class ShoppingCartComponent implements OnInit {
       })
     } else {
       //update cart
+      this.api.updateProductInCart(id, {type: 1}).subscribe(res => {
+        if (res) {
+          // this.totalProduct++;
+          this.getCart();
+          this.toasterService.success('Giảm bớt sản phẩm thành công!');
+          this.listProduct.result.forEach((i: any) => {
+            if (i.product.id === productId) {
+              i.amount--;
+            }
+          })
+
+        }
+      }, error => {
+        console.log(error);
+        if (error.error.message === "product_is_empty") {
+          this.toasterService.error('Số lượng sản phẩm không đủ!');
+        }
+      })
     }
   }
 
