@@ -21,6 +21,7 @@ export class WebSocketService {
     this.socket = io(environment.url);
     
     this.socket.on('newMessage', (message: any) => {
+      console.log('=============================> ', message)
       this.messages$.next(message);
     });
   }
@@ -33,10 +34,12 @@ export class WebSocketService {
     this.socket.emit('leaveRoom', room);
   }
 
-  sendMessage(room: string, message: string, userId: string) {
+  sendMessage(room: string, message: string, userId: string, isAdmin: boolean) {
     this.socket.emit('sendUserMessage', {
-      userId: userId,
-      content: message
+      roomId: room,
+      content: message,
+      userId, 
+      isAdmin
     });
   }
 

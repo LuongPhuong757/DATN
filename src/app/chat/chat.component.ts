@@ -7,7 +7,7 @@ interface Message {
   text: string;
   sender: string;
   timestamp: Date;
-  userId: string;
+  roomId: string;
   // content: string;
 }
 
@@ -83,7 +83,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
             text: msg.content,
             sender: msg.isAdmin ? 'system' : 'user',
             timestamp: new Date(msg.createdAt),
-            userId: msg.senderId.toString()
+            roomId: msg.roomId.toString()
           }));
           setTimeout(() => this.scrollToBottom(), 100);
         },
@@ -98,21 +98,23 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
     console.log(message,'============> message')
     this.messages.push({
       text: message.content,
-      sender: message.userId === this.userId ? 'user' : 'system',
-      timestamp: new Date(message.timestamp),
-      userId: message.userId,
+      sender: message.senderId === this.userId ? 'user' : 'system',
+      timestamp: new Date(message.createdAt),
+      roomId: message.roomId,
       // content: message.content
     });
     this.isLoading = false;
   }
 
   sendMessage() {
+    console.log(this.currentRoom, '---------------------------->')
     if (this.newMessage.trim() && !this.isLoading) {
       // Send message through WebSocket
       this.wsService.sendMessage(
         this.currentRoom,
         this.newMessage,
-        this.userId
+        this.userId,
+        this.isAdmin
       );
 
       this.newMessage = '';

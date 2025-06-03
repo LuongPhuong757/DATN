@@ -5,7 +5,7 @@ import { environment } from '../environment/environment';
 
 export interface ChatMessage {
   id: number;
-  userId: number;
+  roomId: number;
   senderId: number;
   isAdmin: boolean;
   content: string;
