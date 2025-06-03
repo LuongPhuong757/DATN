@@ -51,6 +51,7 @@ export class LoginComponent {
         sessionStorage.setItem('token', res.accessToken);
         sessionStorage.setItem('role', res.user.roles);
         sessionStorage.setItem('username', res.user.userName)
+        sessionStorage.setItem('userId', res.user.id)
 
         // sessionStorage.setItem('userna')
         if (res.user.roles === 'USER') {

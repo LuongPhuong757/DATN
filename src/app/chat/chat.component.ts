@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { WebSocketService } from '../services/websocket.service';
+import { ChatService, ChatMessage } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 
 interface Message {
@@ -7,6 +8,7 @@ interface Message {
   sender: string;
   timestamp: Date;
   userId: string;
+  // content: string;
 }
 
 @Component({
@@ -21,16 +23,24 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   newMessage: string = '';
   isLoading = false;
   private subscription: Subscription;
-  currentRoom = 'general'; // Default room
-  userId = 'user-' + Math.random().toString(36).substr(2, 9); // Generate random user ID
+  currentRoom: string;
+  userId: string;
 
-  constructor(private wsService: WebSocketService) {
+  constructor(
+    private wsService: WebSocketService,
+    private chatService: ChatService
+  ) {
+    // Get user ID from sessionStorage
+    this.userId = sessionStorage.getItem('userId') || '';
+    console.log(this.userId,'============> userId')
+    this.currentRoom = `${this.userId}`;
+
     // Subscribe to WebSocket messages
     this.subscription = this.wsService.messages$.subscribe(message => {
       this.handleIncomingMessage(message);
     });
 
-    // Join default room
+    // Join user's room
     this.wsService.joinRoom(this.currentRoom);
   }
 
@@ -56,16 +66,38 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   toggleChat() {
     this.isChatOpen = !this.isChatOpen;
     if (this.isChatOpen) {
+      this.loadChatHistory();
       setTimeout(() => this.scrollToBottom(), 100);
     }
   }
 
+  private loadChatHistory() {
+    if (this.userId) {
+      this.chatService.getChatHistory(this.userId).subscribe(
+        (history: ChatMessage[]) => {
+          this.messages = history.map(msg => ({
+            text: msg.content,
+            sender: msg.isAdmin ? 'system' : 'user',
+            timestamp: new Date(msg.createdAt),
+            userId: msg.senderId.toString()
+          }));
+          setTimeout(() => this.scrollToBottom(), 100);
+        },
+        error => {
+          console.error('Error loading chat history:', error);
+        }
+      );
+    }
+  }
+
   private handleIncomingMessage(message: any) {
+    console.log(message,'============> message')
     this.messages.push({
-      text: message.message,
+      text: message.content,
       sender: message.userId === this.userId ? 'user' : 'system',
       timestamp: new Date(message.timestamp),
-      userId: message.userId
+      userId: message.userId,
+      // content: message.content
     });
     this.isLoading = false;
   }

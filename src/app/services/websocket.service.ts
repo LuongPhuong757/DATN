@@ -15,45 +15,36 @@ interface ChatMessage {
 })
 export class WebSocketService {
   private socket: any;
-  private messageSubject = new Subject<ChatMessage>();
-  public messages$ = this.messageSubject.asObservable();
+  public messages$ = new Subject<any>();
 
   constructor() {
-    this.socket = io('http://localhost:3000', {
-      transports: ['websocket'],
-      autoConnect: true
-    });
-
-    this.socket.on('connect', () => {
-      console.log('Socket.IO connection established');
-    });
-
-    this.socket.on('newMessage', (message: ChatMessage) => {
-      this.messageSubject.next(message);
-    });
-
-    this.socket.on('disconnect', () => {
-      console.log('Socket.IO connection closed');
-    });
-
-    this.socket.on('error', (error: Error) => {
-      console.error('Socket.IO error:', error);
+    this.socket = io(environment.url);
+    
+    this.socket.on('newMessage', (message: any) => {
+      this.messages$.next(message);
     });
   }
 
-  joinRoom(room: string): void {
-    this.socket.emit('joinRoom', room);
+  joinRoom(room: string) {
+    this.socket.emit('joinUserRoom', room);
   }
 
-  leaveRoom(room: string): void {
+  leaveRoom(room: string) {
     this.socket.emit('leaveRoom', room);
   }
 
-  sendMessage(room: string, message: string, userId: string): void {
-    this.socket.emit('sendMessage', { room, message, userId });
+  sendMessage(room: string, message: string, userId: string) {
+    this.socket.emit('sendUserMessage', {
+      userId: userId,
+      content: message
+    });
   }
 
-  closeConnection(): void {
+  getMessages(): Observable<any> {
+    return this.messages$.asObservable();
+  }
+
+  closeConnection() {
     if (this.socket) {
       this.socket.disconnect();
     }
