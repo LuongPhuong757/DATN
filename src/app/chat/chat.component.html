@@ -6,10 +6,20 @@
     </svg>
   </button>
 
+  <!-- Admin User ID Input -->
+  <div *ngIf="isAdmin && !isChatOpen" class="admin-input-container">
+    <input type="text" 
+           [(ngModel)]="targetUserId" 
+           placeholder="Enter user ID..."
+           (keyup.enter)="joinUserRoom()"
+           class="admin-input">
+    <button (click)="joinUserRoom()" class="admin-join-btn">Join</button>
+  </div>
+
   <!-- Chat Window -->
   <div *ngIf="isChatOpen" class="chat-window">
     <div class="chat-header">
-      <h3>Chat with AI</h3>
+      <h3>{{ isAdmin ? 'Chat with User ' + targetUserId : 'Chat with AI' }}</h3>
       <button (click)="toggleChat()" class="close-button">×</button>
     </div>
     <div #chatMessages class="chat-messages">
