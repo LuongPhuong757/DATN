@@ -9,10 +9,12 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatComponent
   ],
   imports: [
     BrowserAnimationsModule,

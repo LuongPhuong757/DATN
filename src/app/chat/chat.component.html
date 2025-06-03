@@ -1,0 +1,48 @@
+<div class="chat-container">
+  <!-- Chat Icon Button -->
+  <button *ngIf="!isChatOpen" (click)="toggleChat()" class="chat-icon-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <!-- Chat Window -->
+  <div *ngIf="isChatOpen" class="chat-window">
+    <div class="chat-header">
+      <h3>Chat with AI</h3>
+      <button (click)="toggleChat()" class="close-button">×</button>
+    </div>
+    <div #chatMessages class="chat-messages">
+      <div *ngFor="let message of messages" 
+           [ngClass]="{'message': true, 'user-message': message.sender === 'user', 'system-message': message.sender === 'system'}">
+        <div class="message-content">
+          {{ message.text }}
+        </div>
+        <div class="message-time">
+          {{ message.timestamp | date:'shortTime' }}
+        </div>
+      </div>
+      <!-- Loading indicator -->
+      <div *ngIf="isLoading" class="message system-message">
+        <div class="message-content">
+          <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" 
+             [(ngModel)]="newMessage" 
+             placeholder="Type your message..."
+             (keyup.enter)="sendMessage()"
+             [disabled]="isLoading">
+      <button (click)="sendMessage()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Send</span>
+        <span *ngIf="isLoading">...</span>
+      </button>
+    </div>
+  </div>
+</div> 
