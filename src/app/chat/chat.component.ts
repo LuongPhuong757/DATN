@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@
 import { WebSocketService } from '../services/websocket.service';
 import { ChatService, ChatMessage } from '../services/chat.service';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environment/environment';
 
 interface Message {
   text: string;
@@ -9,6 +11,16 @@ interface Message {
   timestamp: Date;
   roomId: string;
   // content: string;
+}
+
+interface UserInfo {
+  id: number;
+  userName: string;
+  avatar: string;
+  roles: string;
+  address: string;
+  email: string;
+  phoneNumber: string;
 }
 
 @Component({
@@ -28,10 +40,12 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   isAdmin: boolean = false;
   targetUserId: string = '';
   username: string = '';
+  targetUsername: string = '';
 
   constructor(
     private wsService: WebSocketService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private http: HttpClient
   ) {
     // Get user ID from sessionStorage
     this.userId = sessionStorage.getItem('userId') || '';
@@ -83,7 +97,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
         (history: ChatMessage[]) => {
           this.messages = history.map(msg => ({
             text: msg.content,
-            sender: msg.senderId === Number(this.userId) ? 'system' : 'user',
+            sender: msg.senderId === Number(this.userId) ? 'user' : 'system',
             timestamp: new Date(msg.createdAt),
             roomId: msg.roomId.toString()
           }));
@@ -126,20 +140,31 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
 
   joinUserRoom() {
     if (this.targetUserId && this.isAdmin) {
-      // Leave current room
-      this.wsService.leaveRoom(this.currentRoom);
-      
-      // Update current room to target user's room
-      this.currentRoom = this.targetUserId;
-      
-      // Join new room
-      this.wsService.joinRoom(this.currentRoom);
-      
-      // Load chat history for the target user
-      this.loadChatHistory();
-      
-      // Open chat window
-      this.isChatOpen = true;
+      // Fetch user information
+      this.http.get<UserInfo>(`${environment.url}/user/${this.targetUserId}`).subscribe(
+        (userInfo) => {
+          console.log(userInfo,'============> userInfo')
+          this.targetUsername = userInfo.userName;
+          
+          // Leave current room
+          this.wsService.leaveRoom(this.currentRoom);
+          
+          // Update current room to target user's room
+          this.currentRoom = this.targetUserId;
+          
+          // Join new room
+          this.wsService.joinRoom(this.currentRoom);
+          
+          // Load chat history for the target user
+          this.loadChatHistory();
+          
+          // Open chat window
+          this.isChatOpen = true;
+        },
+        (error) => {
+          console.error('Error fetching user information:', error);
+        }
+      );
     }
   }
 } 

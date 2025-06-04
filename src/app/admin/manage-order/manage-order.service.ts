@@ -27,4 +27,12 @@ export class ManageOrderService {
     });
     return this.http.delete<any>(`${environment.url}/order/${id}`, {headers, observe: 'response' });
   }
+
+  updateOrderShippingStatus(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+    });
+    return this.http.put<any>(`${environment.url}/order/${id}/ship`, {}, {headers, observe: 'response' });
+  }
 }

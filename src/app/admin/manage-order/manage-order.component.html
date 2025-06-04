@@ -40,8 +40,10 @@
                 {{order.totalProduct}}
               </td>
               <td>{{order.totalMoney}} đ</td>
-              <td><span class="badge bg-success">Đã đặt hàng</span></td>
+              <td><span class="badge" [ngClass]="getStatusBadgeClass(order.status)">{{getStatusText(order.status)}}</span></td>
               <td class="text-center">
+                <button *ngIf="order.status !== 'delivered'" (click)="markAsDelivered(order)" class="btn btn-success btn-sm mr-2" type="button"
+                        title="Đã giao hàng"><i class="fas fa-truck" style="width: 15px"></i></button>
                 <button (click)="onDelete(order.id)" class="btn btn-primary btn-sm trash mr-2" type="button"
                         title="Xóa"><i class="fas fa-trash-alt" style="width: 15px"></i></button>
                 <!--                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit" style="width: 15px"></i></button></td>-->

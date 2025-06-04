@@ -13,5 +13,7 @@ export class HeaderComponent {
   onLogout() : void {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('role');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userId');
   }
 }

@@ -19,7 +19,7 @@
   <!-- Chat Window -->
   <div *ngIf="isChatOpen" class="chat-window">
     <div class="chat-header">
-      <h3>{{ isAdmin ? 'Chat with ' + username : 'Chat with AI' }}</h3>
+      <h3>{{ isAdmin ? (targetUsername ? 'Chat with ' + targetUsername : 'Chat with User') : 'Chat with AI' }}</h3>
       <button (click)="toggleChat()" class="close-button">×</button>
     </div>
     <div #chatMessages class="chat-messages">

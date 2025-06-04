@@ -6,7 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {ApiProcessService} from "../api-process/api-process.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-
+import {WebSocketService} from "../../services/websocket.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,14 +21,17 @@ export class ShoppingCartComponent implements OnInit {
   product: any;
   productId = 0;
   orderForm = new FormGroup({});
+  userId: string = '';
 
   constructor(private apiShoppingCart: ShoppingCartService,
               private api: ApiProcessService,
               private apiUser: ManageUserService,
               private shareData: ShareDataService,
               public toasterService: ToastrService,
-              private router: Router
+              private router: Router,
+              private wsService: WebSocketService
   ) {
+    this.userId = sessionStorage.getItem('userId') || '';
   }
 
   ngOnInit(): void {
@@ -119,11 +122,12 @@ export class ShoppingCartComponent implements OnInit {
   }*/
 
   addOrder(): void {
-    // this.router.navigate(['buy-success']);
     this.apiShoppingCart.addOrder({}).subscribe(res => {
       if (res) {
         this.toasterService.success('Đặt hàng thành công!');
-
+        // Send message to user's chat room
+        const message = `Tôi đã đặt một đơn hàng mới với tổng giá trị ${this.totalMoney.toLocaleString('vi-VN')}đ`;
+        this.wsService.sendMessage(this.userId, message, this.userId, false);
       }
     }, error => {
       console.log(error)
