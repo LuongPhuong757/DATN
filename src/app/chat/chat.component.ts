@@ -27,6 +27,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   userId: string;
   isAdmin: boolean = false;
   targetUserId: string = '';
+  username: string = '';
 
   constructor(
     private wsService: WebSocketService,
@@ -35,6 +36,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
     // Get user ID from sessionStorage
     this.userId = sessionStorage.getItem('userId') || '';
     this.isAdmin = sessionStorage.getItem('role') === 'ADMIN';
+    this.username = sessionStorage.getItem('username') || '';
     console.log(this.isAdmin,'============> isAdmin')
     console.log(this.userId,'============> userId')
     this.currentRoom = `${this.userId}`;
@@ -76,8 +78,8 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
   }
 
   private loadChatHistory() {
-    if (this.userId) {
-      this.chatService.getChatHistory(this.userId).subscribe(
+    if (this.currentRoom) {
+      this.chatService.getChatHistory(this.currentRoom).subscribe(
         (history: ChatMessage[]) => {
           this.messages = history.map(msg => ({
             text: msg.content,
