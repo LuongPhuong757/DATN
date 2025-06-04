@@ -5,7 +5,7 @@ import {ShareDataService} from "../../share-data.service";
 import {ToastrService} from "ngx-toastr";
 import {ApiProcessService} from "../api-process/api-process.service";
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {WebSocketService} from "../../services/websocket.service";
 
 @Component({
@@ -20,8 +20,9 @@ export class ShoppingCartComponent implements OnInit {
   totalProvisionalMoney = 0;
   product: any;
   productId = 0;
-  orderForm = new FormGroup({});
+  orderForm: FormGroup;
   userId: string = '';
+  userData: any = {};
 
   constructor(private apiShoppingCart: ShoppingCartService,
               private api: ApiProcessService,
@@ -32,6 +33,12 @@ export class ShoppingCartComponent implements OnInit {
               private wsService: WebSocketService
   ) {
     this.userId = sessionStorage.getItem('userId') || '';
+    this.orderForm = new FormGroup({
+      userName: new FormControl(''),
+      phoneNumber: new FormControl(''),
+      email: new FormControl(''),
+      address: new FormControl('')
+    });
   }
 
   ngOnInit(): void {
@@ -44,29 +51,36 @@ export class ShoppingCartComponent implements OnInit {
       this.listProduct = res;
       this.totalProduct = res.totalProduct;
       this.productId = res.result[0].userId;
-     /* res.result.forEach((i: any) => {
-        this.totalProduct += i.amount;
-      });*/
       this.totalMoney = res.totalMoney;
       this.apiUser.getUserId(this.productId).subscribe(res => {
         this.product = res;
-        console.log(res)
+        // Initialize userData with current user info
+        this.userData = {
+          id: this.productId,
+          userName: res.userName,
+          phoneNumber: res.phoneNumber,
+          email: res.email,
+          address: res.address
+        };
       })
     })
+  }
+
+  updateUserData(field: string, event: any): void {
+    this.userData[field] = event.target.value;
+    console.log('Updated userData:', this.userData);
   }
 
   deleteInCart(id: number): void {
     this.apiShoppingCart.deleteProductInCart(id).subscribe(res => {
       this.getCart();
     })
-
   }
 
   changeAmount(increase: boolean,id: any, productId: any): void {
     if (increase) {
       this.api.updateProductInCart(id,{type: 0}).subscribe(res => {
         if (res) {
-          // this.totalProduct++;
           this.getCart();
           this.toasterService.success('Thêm sản phẩm thành công!');
           this.listProduct.result.forEach((i: any) => {
@@ -74,7 +88,6 @@ export class ShoppingCartComponent implements OnInit {
               i.amount++;
             }
           })
-
         }
       }, error => {
         console.log(error);
@@ -83,10 +96,8 @@ export class ShoppingCartComponent implements OnInit {
         }
       })
     } else {
-      //update cart
       this.api.updateProductInCart(id, {type: 1}).subscribe(res => {
         if (res) {
-          // this.totalProduct++;
           this.getCart();
           this.toasterService.success('Giảm bớt sản phẩm thành công!');
           this.listProduct.result.forEach((i: any) => {
@@ -94,7 +105,6 @@ export class ShoppingCartComponent implements OnInit {
               i.amount--;
             }
           })
-
         }
       }, error => {
         console.log(error);
@@ -111,18 +121,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   provisionalMoney(price: number, amount: number): number {
-    console.log('a');
     this.totalProvisionalMoney = price * amount;
     return this.totalProvisionalMoney;
   }
 
-  /*onTotalMoney(): number {
-    this.totalMoney += this.totalProvisionalMoney;
-    return this.totalMoney;
-  }*/
-
   addOrder(): void {
-    this.apiShoppingCart.addOrder({}).subscribe(res => {
+    console.log('Updated userData:', this.userData);
+    this.apiShoppingCart.addOrder({...this.userData}).subscribe(res => {
       if (res) {
         this.toasterService.success('Đặt hàng thành công!');
         // Send message to user's chat room

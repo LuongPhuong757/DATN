@@ -123,25 +123,25 @@
                   <tr class="cart-subtotal">
                     <th>Họ tên</th>
                     <td data-title="Họ tên">
-                      <input value="{{product.userName}}" type="text" />
+                      <input value="{{product.userName}}" type="text" (change)="updateUserData('userName', $event)" />
                     </td>
                   </tr>
                   <tr class="cart-subtotal">
                     <th>Số điện thoại</th>
                     <td data-title="SDT">
-                      <input value="{{product.phoneNumber}}" type="text" />
+                      <input value="{{product.phoneNumber}}" type="text" (change)="updateUserData('phoneNumber', $event)" />
                     </td>
                   </tr>
                   <tr class="cart-subtotal">
                     <th>Email</th>
                     <td data-title="Email">
-                      <input value="{{product.email}}" type="email" />
+                      <input value="{{product.email}}" type="email" (change)="updateUserData('email', $event)" />
                     </td>
                   </tr>
                   <tr class="cart-subtotal">
                     <th>Địa chỉ</th>
                     <td data-title="Địa chỉ">
-                      <input value="{{product.address}}" type="text" />
+                      <input value="{{product.address}}" type="text" (change)="updateUserData('address', $event)" />
                     </td>
                   </tr>
                   <tr class="cart-subtotal">

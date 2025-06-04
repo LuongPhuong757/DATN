@@ -19,8 +19,10 @@
             <thead>
             <tr>
               <!--                <th width="10"><input type="checkbox" id="all"></th>-->
-              <th>ID đơn hàng</th>
+              <th>ID</th>
               <th>Khách hàng</th>
+              <th>Số điện thoại</th>
+              <th>Địa chỉ</th>
               <th>Đơn hàng</th>
               <th>Số lượng</th>
               <th>Tổng tiền</th>
@@ -32,9 +34,11 @@
             <tr *ngFor="let order of listOrder">
               <!--                <td width="10"><input type="checkbox" name="check1" value="1"></td>-->
               <td>{{order.id}}</td>
-              <td>{{order.user.userName}}</td>
+              <td>{{order.userName}}</td>
+              <td>{{order.phoneNumber}}</td>
+              <td>{{order.address}}</td>
               <td>
-                {{order.orderName.slice(0, -2)}}
+                {{order.orderName?.slice(0, -2)}}
               </td>
               <td>
                 {{order.totalProduct}}
