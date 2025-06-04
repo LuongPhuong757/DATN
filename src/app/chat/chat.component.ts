@@ -83,7 +83,7 @@ export class ChatComponent implements AfterViewChecked, OnDestroy {
         (history: ChatMessage[]) => {
           this.messages = history.map(msg => ({
             text: msg.content,
-            sender: msg.isAdmin ? 'system' : 'user',
+            sender: msg.senderId === Number(this.userId) ? 'system' : 'user',
             timestamp: new Date(msg.createdAt),
             roomId: msg.roomId.toString()
           }));
